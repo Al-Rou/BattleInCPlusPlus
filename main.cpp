@@ -52,6 +52,24 @@ void Monster::printData(int life, bool loseStatus)
     }
 }
 
+class Human : public Player
+{
+private:
+    int life;
+    bool loseStatus;
+    int mana;
+public:
+    Human(int a = 100, int b = 35);
+    int getLife();
+    bool getStatus();
+    int getMana();
+    int damage() override
+    {
+
+    }
+    void printData(int life, int mana, bool status);
+};
+
 int main()
 {
     Monster* monCheck = new Monster();
