@@ -74,13 +74,32 @@ public:
     }
     int damage() override
     {
+        int d = 0;
         if (choiceOfWeapon == "Sword")
         {
-            cout << "Weapon is Sword";
+            do{
+                d = rand() % 100;
+            } while((d < 7) || (d > 9));
+            return d;
         }
         else if (choiceOfWeapon == "Fireball")
         {
-            cout << "Weapon is Fireball";
+            if (mana > 9)
+            {
+                do{
+                    d = rand() % 100;
+                } while ((d < 1) || (d > 18));
+                mana = mana - 10;
+                return d;
+            }
+            else
+            {
+                cout << "You don't have enough mana!" << endl;
+                do{
+                    d = rand() % 100;
+                } while ((d < 7) || (d > 9));
+                return d;
+            }
         }
     }
     void printData(int life, int mana, bool status);
@@ -126,4 +145,5 @@ int main()
     cin >> answer;
     humanCheck->setWeapon(answer);
     humanCheck->damage();
+    humanCheck->printData(humanCheck->getLife(), humanCheck->getMana(), humanCheck->getStatus());
 }
