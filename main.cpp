@@ -160,6 +160,7 @@ private:
     Monster* m = new Monster();
 public:
     GoPlaying();
+    ~GoPlaying();
     GoPlaying(Human* chosenHuman, Monster* chosenMonster);
 };
 GoPlaying::GoPlaying()
@@ -199,6 +200,10 @@ GoPlaying::GoPlaying()
             cout << "Human won!" << endl;
             h->printData(h->getLife(), h->getMana(), h->getStatus());
         }
+}
+GoPlaying::~GoPlaying()
+{
+    cout << "Finished!" << endl;
 }
 GoPlaying::GoPlaying(Human* chosenHuman, Monster* chosenMonster)
 {
@@ -243,7 +248,8 @@ GoPlaying::GoPlaying(Human* chosenHuman, Monster* chosenMonster)
 
 int main()
 {
-    //GoPlaying* goPlaying = new GoPlaying();
+    GoPlaying* goPlaying1 = new GoPlaying();
+    cout << "New Game: " << endl;
     Human* hum = new Human(60, 20);
     Monster* mon = new Monster(20);
     GoPlaying* goPlaying = new GoPlaying(hum, mon);
