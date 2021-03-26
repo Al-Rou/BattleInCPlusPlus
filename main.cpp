@@ -119,6 +119,10 @@ int Human::getLife()
 {
     return life;
 }
+void Human::setLife(int newLife)
+{
+    this.life = newLife;
+}
 int Human::getMana()
 {
     return mana;
@@ -155,7 +159,10 @@ GoPlaying::GoPlaying()
         string ans;
         cin >> ans;
         h->setWeapon(ans);
-        m->
+        m->setLife(m->getLife()-h->damage());
+        m->printData(m->getLife(), m->getStatus());
+        h->setLife(h->getLife()-m->damage());
+        h->printData(h->getLife(), h->getMana(), h->getStatus());
     }
 }
 
