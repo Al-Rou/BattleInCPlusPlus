@@ -40,7 +40,7 @@ int Monster::getLife()
 }
 void Monster::setLife(int newLife)
 {
-    this.life = newLife;
+    life = newLife;
 }
 bool Monster::getStatus()
 {
@@ -48,7 +48,7 @@ bool Monster::getStatus()
 }
 void Monster::setStatus(bool s)
 {
-    this.loseStatus = s;
+    loseStatus = s;
 }
 void Monster::printData(int life, bool loseStatus)
 {
@@ -127,7 +127,7 @@ int Human::getLife()
 }
 void Human::setLife(int newLife)
 {
-    this.life = newLife;
+    life = newLife;
 }
 int Human::getMana()
 {
@@ -139,7 +139,7 @@ bool Human::getStatus()
 }
 void Human::setStatus(bool s)
 {
-    this.loseStatus = s;
+    loseStatus = s;
 }
 void Human::printData(int life, int mana, bool status)
 {
@@ -194,15 +194,5 @@ GoPlaying::GoPlaying()
 
 int main()
 {
-    Monster* monCheck = new Monster();
-    Human* humanCheck = new Human();
-    cout << monCheck->damage() << endl;
-    monCheck->printData(monCheck->getLife(), monCheck->getStatus());
-    humanCheck->printData(humanCheck->getLife(), humanCheck->getMana(), humanCheck->getStatus());
-    cout << "What weapon?";
-    string answer;
-    cin >> answer;
-    humanCheck->setWeapon(answer);
-    humanCheck->damage();
-    humanCheck->printData(humanCheck->getLife(), humanCheck->getMana(), humanCheck->getStatus());
+    GoPlaying* goPlaying = new GoPlaying();
 }
