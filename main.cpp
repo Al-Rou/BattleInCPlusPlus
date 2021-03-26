@@ -19,6 +19,7 @@ public:
     int getLife();
     void setLife(int newLife);
     bool getStatus();
+    void setStatus(bool s);
     int damage() override
     {
         int d = 0;
@@ -45,6 +46,10 @@ bool Monster::getStatus()
 {
     return loseStatus;
 }
+void Monster::setStatus(bool s)
+{
+    this.loseStatus = s;
+}
 void Monster::printData(int life, bool loseStatus)
 {
     if (loseStatus == false)
@@ -69,6 +74,7 @@ public:
     int getLife();
     void setLife(int newLife);
     bool getStatus();
+    void setStatus(bool s);
     int getMana();
     string getWeapon()
     {
@@ -131,6 +137,10 @@ bool Human::getStatus()
 {
     return loseStatus;
 }
+void Human::setStatus(bool s)
+{
+    this.loseStatus = s;
+}
 void Human::printData(int life, int mana, bool status)
 {
     if (status == false)
@@ -164,6 +174,22 @@ GoPlaying::GoPlaying()
         h->setLife(h->getLife()-m->damage());
         h->printData(h->getLife(), h->getMana(), h->getStatus());
     }
+    if (h->getLife() <= 0)
+        {
+            h->setStatus(true);
+            cout << "Human lost with below results: " << endl;
+            h->printData(h->getLife(), h->getMana(), h->getStatus());
+            cout << "Monster won!" << endl;
+            m->printData(m->getLife(), m->getStatus());
+        }
+    else
+        {
+            m->setStatus(true);
+            cout << "Monster lost with below results: " << endl;
+            m->printData(m->getLife(), m->getStatus());
+            cout << "Human won!" << endl;
+            h->printData(h->getLife(), h->getMana(), h->getStatus());
+        }
 }
 
 int main()
