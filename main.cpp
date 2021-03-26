@@ -160,6 +160,7 @@ private:
     Monster* m = new Monster();
 public:
     GoPlaying();
+    GoPlaying(Human* chosenHuman, Monster* chosenMonster);
 };
 GoPlaying::GoPlaying()
 {
@@ -199,8 +200,51 @@ GoPlaying::GoPlaying()
             h->printData(h->getLife(), h->getMana(), h->getStatus());
         }
 }
+GoPlaying::GoPlaying(Human* chosenHuman, Monster* chosenMonster)
+{
+    h = chosenHuman;
+    m = chosenMonster;
+    h->printData(h->getLife(), h->getMana(), h->getStatus());
+    m->printData(m->getLife(), m->getStatus());
+    while((h->getLife() > 0) && (m->getLife() > 0))
+    {
+        cout << "Choose your weapon between Sword and Fireball: ";
+        string ans;
+        cin >> ans;
+        while((ans != "Sword") && (ans != "Fireball"))
+        {
+            cout << "Your choice of weapon is not valid!" << endl;
+            cout << "Choose your weapon between Sword and Fireball: ";
+            cin >> ans;
+        }
+        h->setWeapon(ans);
+        m->setLife(m->getLife()-h->damage());
+        m->printData(m->getLife(), m->getStatus());
+        h->setLife(h->getLife()-m->damage());
+        h->printData(h->getLife(), h->getMana(), h->getStatus());
+    }
+    if (h->getLife() <= 0)
+        {
+            h->setStatus(true);
+            cout << "Human lost with below results: " << endl;
+            h->printData(h->getLife(), h->getMana(), h->getStatus());
+            cout << "Monster won!" << endl;
+            m->printData(m->getLife(), m->getStatus());
+        }
+    else
+        {
+            m->setStatus(true);
+            cout << "Monster lost with below results: " << endl;
+            m->printData(m->getLife(), m->getStatus());
+            cout << "Human won!" << endl;
+            h->printData(h->getLife(), h->getMana(), h->getStatus());
+        }
+}
 
 int main()
 {
-    GoPlaying* goPlaying = new GoPlaying();
+    //GoPlaying* goPlaying = new GoPlaying();
+    Human* hum = new Human(60, 20);
+    Monster* mon = new Monster(20);
+    GoPlaying* goPlaying = new GoPlaying(hum, mon);
 }
