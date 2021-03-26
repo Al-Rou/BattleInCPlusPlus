@@ -17,6 +17,7 @@ private:
 public:
     Monster(int a = 100);
     int getLife();
+    void setLife(int newLife);
     bool getStatus();
     int damage() override
     {
@@ -35,6 +36,10 @@ Monster::Monster(int a):
 int Monster::getLife()
 {
     return life;
+}
+void Monster::setLife(int newLife)
+{
+    this.life = newLife;
 }
 bool Monster::getStatus()
 {
@@ -62,6 +67,7 @@ private:
 public:
     Human(int a = 100, int b = 35);
     int getLife();
+    void setLife(int newLife);
     bool getStatus();
     int getMana();
     string getWeapon()
@@ -130,6 +136,26 @@ void Human::printData(int life, int mana, bool status)
     else
     {
         cout << "The life is " << life << " and the mana is " << mana << " and the lose status is true" << endl;
+    }
+}
+
+class GoPlaying
+{
+private:
+    Human* h = new Human();
+    Monster* m = new Monster();
+public:
+    GoPlaying();
+};
+GoPlaying::GoPlaying()
+{
+    while((h->getLife() > 0) && (m->getLife() > 0))
+    {
+        cout << "Choose your weapon between Sword and Fireball: ";
+        string ans;
+        cin >> ans;
+        h->setWeapon(ans);
+        m->
     }
 }
 
