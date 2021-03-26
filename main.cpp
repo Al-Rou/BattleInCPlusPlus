@@ -54,11 +54,11 @@ void Monster::printData(int life, bool loseStatus)
 {
     if (loseStatus == false)
     {
-        cout << "The life is " << life << " and the lose status is false" << endl;
+        cout << "Monster's life is " << life << " and its lose status is false" << endl;
     }
     else
     {
-        cout << "The life is " << life << " and the lose status is true" << endl;
+        cout << "Monster's life is " << life << " and its lose status is true" << endl;
     }
 }
 
@@ -145,11 +145,11 @@ void Human::printData(int life, int mana, bool status)
 {
     if (status == false)
     {
-        cout << "The life is " << life << " and the mana is " << mana << " and the lose status is false" << endl;
+        cout << "Human's life is " << life << " and his mana is " << mana << " and his lose status is false" << endl;
     }
     else
     {
-        cout << "The life is " << life << " and the mana is " << mana << " and the lose status is true" << endl;
+        cout << "Human's life is " << life << " and his mana is " << mana << " and his lose status is true" << endl;
     }
 }
 
@@ -163,11 +163,19 @@ public:
 };
 GoPlaying::GoPlaying()
 {
+    h->printData(h->getLife(), h->getMana(), h->getStatus());
+    m->printData(m->getLife(), m->getStatus());
     while((h->getLife() > 0) && (m->getLife() > 0))
     {
         cout << "Choose your weapon between Sword and Fireball: ";
         string ans;
         cin >> ans;
+        while((ans != "Sword") && (ans != "Fireball"))
+        {
+            cout << "Your choice of weapon is not valid!" << endl;
+            cout << "Choose your weapon between Sword and Fireball: ";
+            cin >> ans;
+        }
         h->setWeapon(ans);
         m->setLife(m->getLife()-h->damage());
         m->printData(m->getLife(), m->getStatus());
